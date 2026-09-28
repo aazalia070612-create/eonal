@@ -1,538 +1,515 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EONAL — Editor Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EONAL — Video Editor</title>
 
 <style>
-:root{
-color-scheme:dark;
---bg:#080608;
---panel:#100a0d;
---panel2:#160b10;
---red:#ff1838;
---red2:#ff4961;
---text:#fff7f8;
---muted:#a99da1;
---line:rgba(255,255,255,.09)
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-margin:0;
-background:#080608;
-color:var(--text);
-font-family:Inter,Arial,sans-serif;
-overflow-x:hidden
-}
-
-body:before{
-content:"";
-position:fixed;
-inset:-20%;
-z-index:-2;
-background:
-radial-gradient(circle at 75% 10%,rgba(255,24,56,.32),transparent 25%),
-radial-gradient(circle at 20% 70%,rgba(180,0,30,.18),transparent 28%),
-linear-gradient(135deg,#080608 0%,#12070b 48%,#080608 100%)
-}
-
-body:after{
-content:"";
-position:fixed;
-inset:0;
-z-index:-1;
-opacity:.08;
-background-image:
-linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);
-background-size:44px 44px;
-mask-image:linear-gradient(to bottom,black,transparent 80%)
+  background:#050505;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
 }
 
 a{
-color:inherit;
-text-decoration:none
+  color:inherit;
+  text-decoration:none;
 }
 
 .wrap{
-width:min(1160px,calc(100% - 36px));
-margin:auto
+  width:min(1200px,92%);
+  margin:auto;
 }
 
+/* HEADER */
+
 header{
-position:sticky;
-top:0;
-z-index:20;
-background:rgba(8,6,8,.78);
-backdrop-filter:blur(18px);
-border-bottom:1px solid var(--line)
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(5,5,5,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .nav{
-height:76px;
-display:flex;
-align-items:center;
-justify-content:space-between
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .logo{
-font-size:20px;
-font-weight:950;
-letter-spacing:-1px
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:4px;
 }
 
-.logo b{color:var(--red)}
+.logo span{
+  color:#ff2020;
+}
 
 nav{
-display:flex;
-gap:28px
+  display:flex;
+  gap:28px;
 }
 
 nav a{
-font-size:11px;
-text-transform:uppercase;
-letter-spacing:1.5px;
-color:#bdb2b5
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:#aaa;
+  transition:.25s;
 }
 
-nav a:hover,
-nav a.active{
-color:white
+nav a:hover{
+  color:#fff;
 }
 
-.nav-social{
-color:var(--red2);
-font-size:11px;
-font-weight:800
-}
+/* HERO */
 
 .hero{
-min-height:650px;
-display:grid;
-align-items:center;
-padding:90px 0 100px;
-position:relative
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  padding-top:76px;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  width:600px;
+  height:600px;
+  background:#ff1010;
+  filter:blur(180px);
+  opacity:.13;
+  right:-180px;
+  top:100px;
 }
 
 .hero:after{
-content:"EONAL";
-position:absolute;
-right:-80px;
-bottom:-10px;
-font-size:clamp(130px,24vw,310px);
-font-weight:1000;
-letter-spacing:-.09em;
-color:rgba(255,24,56,.035);
-pointer-events:none
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:#ff1010;
+  filter:blur(220px);
+  opacity:.08;
+  left:-220px;
+  bottom:-180px;
 }
 
-.eyebrow{
-font-size:11px;
-letter-spacing:3px;
-color:var(--red2);
-text-transform:uppercase;
-font-weight:800;
-margin-bottom:22px
-}
-
-.hero h1{
-font-size:clamp(64px,11vw,132px);
-line-height:.82;
-letter-spacing:-.075em;
-margin:0;
-max-width:900px
-}
-
-.hero h1 span{color:var(--red)}
-
-.hero p{
-max-width:560px;
-color:#b8adb0;
-line-height:1.75;
-font-size:15px;
-margin:30px 0
-}
-
-.actions{
-display:flex;
-gap:12px;
-flex-wrap:wrap
-}
-
-.btn{
-border:1px solid var(--red);
-background:var(--red);
-color:#170308;
-padding:14px 21px;
-border-radius:8px;
-font-size:11px;
-font-weight:900;
-letter-spacing:1.2px;
-text-transform:uppercase;
-cursor:pointer;
-transition:.2s
-}
-
-.btn:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 35px rgba(255,24,56,.25)
-}
-
-.btn.ghost{
-background:transparent;
-color:white;
-border-color:var(--line)
-}
-
-section{
-padding:70px 0
-}
-
-.section-top{
-display:flex;
-justify-content:space-between;
-align-items:end;
-gap:20px;
-border-bottom:1px solid var(--line);
-padding-bottom:18px;
-margin-bottom:25px
+.hero-content{
+  position:relative;
+  z-index:2;
 }
 
 .kicker{
-font-size:10px;
-color:var(--red2);
-letter-spacing:2px;
-text-transform:uppercase;
-font-weight:900;
-margin-bottom:8px
+  color:#ff2424;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:12px;
+  margin-bottom:18px;
 }
 
-h2{
-font-size:38px;
-letter-spacing:-.045em;
-margin:0
+.hero-title{
+  font-size:clamp(70px,13vw,190px);
+  line-height:.82;
+  font-weight:1000;
+  letter-spacing:-8px;
 }
 
-.note{
-color:#82777b;
-font-size:11px;
-max-width:330px;
-line-height:1.6;
-text-align:right
+.hero-subtitle{
+  margin-top:28px;
+  max-width:900px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(18px,2.3vw,32px);
+  font-style:italic;
+  line-height:1.35;
+  letter-spacing:.5px;
+  color:rgba(255,255,255,.78);
+  animation:subtitleFade 1.2s ease forwards;
 }
 
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px
+@keyframes subtitleFade{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
-.card{
-background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.015));
-border:1px solid var(--line);
-border-radius:12px;
-padding:8px;
-overflow:hidden;
-transition:.25s
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:38px;
+  flex-wrap:wrap;
 }
 
-.card:hover{
-border-color:rgba(255,24,56,.45);
-transform:translateY(-4px);
-box-shadow:0 16px 45px rgba(255,24,56,.12)
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  cursor:pointer;
+  padding:13px 20px;
+  background:#ff2020;
+  color:#fff;
+  font-weight:800;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  transition:.25s;
 }
 
-.media{
-aspect-ratio:1/1;
-border-radius:8px;
-overflow:hidden;
-background:linear-gradient(135deg,#240810,#080608);
-position:relative;
-display:grid;
-place-items:center
+.btn:hover{
+  background:#fff;
+  color:#000;
+  transform:translateY(-2px);
 }
 
-.media video{
-width:100%;
-height:100%;
-object-fit:cover
+.btn.ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.18);
 }
 
-.placeholder{
-font-size:34px;
-font-weight:1000;
-color:rgba(255,255,255,.12)
+.btn.ghost:hover{
+  background:#fff;
+  color:#000;
 }
 
-.fullscreen{
-position:absolute;
-right:12px;
-top:12px;
-border:1px solid rgba(255,255,255,.18);
-background:rgba(8,6,8,.72);
-color:#fff;
-border-radius:7px;
-padding:9px 11px;
-font-size:10px;
-font-weight:900;
-cursor:pointer;
-backdrop-filter:blur(8px)
-}
+/* SECTIONS */
 
-.fullscreen:hover{
-background:var(--red);
-border-color:var(--red)
-}
-
-.meta{
-padding:15px 8px 9px
-}
-
-.meta h3{
-margin:0 0 6px;
-font-size:16px
-}
-
-.meta p{
-margin:0;
-color:#887d81;
-font-size:11px
-}
-
-.upload{
-margin-top:18px;
-border:1px dashed rgba(255,24,56,.45);
-border-radius:12px;
-padding:22px;
-background:rgba(255,24,56,.035);
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px
-}
-
-.upload strong{
-font-size:13px
-}
-
-.upload span{
-display:block;
-color:#85797d;
-font-size:11px;
-margin-top:5px
-}
-
-.hidden{
-display:none
-}
-
-.presets{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px
-}
-
-.preset{
-border:1px solid var(--line);
-border-radius:12px;
-overflow:hidden;
-background:var(--panel);
-transition:.25s
-}
-
-.preset:hover{
-transform:translateY(-4px);
-border-color:rgba(255,24,56,.45);
-box-shadow:0 16px 45px rgba(255,24,56,.12)
-}
-
-.preset-preview{
-height:210px;
-background:
-radial-gradient(circle at 50% 30%,rgba(255,24,56,.55),transparent 28%),
-linear-gradient(135deg,#1a080d,#080608);
-display:grid;
-place-items:center;
-font-size:40px;
-font-weight:1000
-}
-
-.preset-preview img{
-width:100%;
-height:100%;
-object-fit:cover
-}
-
-.preset-body{
-padding:16px
-}
-
-.preset-body h3{
-margin:0 0 5px
-}
-
-.preset-body p{
-margin:0 0 14px;
-color:#8b8084;
-font-size:11px
-}
-
-.preset-form{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-align-items:center
-}
-
-.preset-form input[type=text]{
-flex:1;
-min-width:180px;
-background:#0d080b;
-border:1px solid var(--line);
-color:white;
-border-radius:8px;
-padding:13px
-}
-
-.download{
-width:100%;
-border:1px solid rgba(255,24,56,.45);
-background:rgba(255,24,56,.08);
-color:#fff;
-padding:11px;
-border-radius:7px;
-font-weight:800;
-cursor:pointer
-}
-
-.download:hover{
-background:var(--red);
-color:#160308
-}
-
-.about{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:25px
-}
-
-.panel{
-border:1px solid var(--line);
-border-radius:14px;
-background:rgba(255,255,255,.025);
-padding:30px
-}
-
-.panel p{
-color:#b0a4a8;
-line-height:1.8;
-font-size:14px
-}
-
-.facts{
-display:grid;
-gap:10px
-}
-
-.fact{
-padding:15px;
-border-radius:9px;
-background:rgba(255,24,56,.05);
-border:1px solid rgba(255,255,255,.06)
-}
-
-.fact small{
-display:block;
-color:#7f7478;
-text-transform:uppercase;
-letter-spacing:1.3px;
-font-size:9px;
-margin-bottom:5px
-}
-
-.fact b{
-font-size:14px
-}
-
-.contact{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px
-}
-
-.contact-card{
-padding:28px;
-border:1px solid var(--line);
-border-radius:14px;
-background:linear-gradient(135deg,rgba(255,24,56,.09),rgba(255,255,255,.025))
-}
-
-.contact-card h3{
-font-size:26px;
-margin:0 0 8px
-}
-
-.contact-card p{
-color:#94888c;
-line-height:1.6;
-font-size:13px
-}
-
-.contact-link{
-display:inline-block;
-margin-top:10px;
-color:#fff;
-font-weight:900
-}
-
-.contact-link:hover{
-color:var(--red2)
-}
-
-footer{
-padding:45px 0;
-color:#675d60;
-font-size:10px;
-border-top:1px solid var(--line);
-text-align:center
-}
-
-@media(max-width:800px){
-
-nav{gap:12px}
-
-.nav-social{display:none}
-
-.cards,
-.presets,
-.about,
-.contact{
-grid-template-columns:1fr
-}
-
-.hero{
-min-height:570px;
-padding-top:60px
+section{
+  padding:110px 0;
+  border-top:1px solid rgba(255,255,255,.06);
 }
 
 .section-top{
-align-items:start;
-flex-direction:column
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:40px;
+}
+
+.section-top h2{
+  font-size:clamp(40px,6vw,72px);
+  line-height:.9;
+  letter-spacing:-3px;
 }
 
 .note{
-text-align:left
+  max-width:390px;
+  color:#777;
+  font-size:13px;
+  line-height:1.6;
 }
+
+/* VIDEO CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+}
+
+.card{
+  background:#0b0b0b;
+  border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+  transition:.3s;
+}
+
+.card:hover{
+  border-color:rgba(255,32,32,.5);
+  transform:translateY(-4px);
+}
+
+.video-wrap{
+  position:relative;
+  background:#000;
+  aspect-ratio:16/9;
+}
+
+.video-wrap video{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+
+.video-fullscreen{
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(0,0,0,.7);
+  color:#fff;
+  padding:8px 11px;
+  cursor:pointer;
+  font-size:11px;
+  text-transform:uppercase;
+}
+
+.card-info{
+  padding:18px;
+}
+
+.card-info h3{
+  font-size:19px;
+  margin-bottom:7px;
+}
+
+.card-info p{
+  color:#777;
+  font-size:12px;
+}
+
+/* PRESETS */
+
+.presets{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.preset-card{
+  background:#0b0b0b;
+  border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+  transition:.3s;
+}
+
+.preset-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,32,32,.5);
+}
+
+.preset-preview{
+  aspect-ratio:16/10;
+  background:
+    radial-gradient(circle at 70% 30%,rgba(255,30,30,.35),transparent 35%),
+    linear-gradient(135deg,#171717,#050505);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.preset-preview img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.preset-placeholder{
+  font-size:65px;
+  font-weight:1000;
+  color:#ff2020;
+  letter-spacing:-5px;
+}
+
+.preset-info{
+  padding:18px;
+}
+
+.preset-info h3{
+  font-size:18px;
+  margin-bottom:14px;
+}
+
+/* UPLOAD */
 
 .upload{
-align-items:flex-start;
-flex-direction:column
+  margin-top:30px;
+  padding:25px;
+  border:1px dashed rgba(255,255,255,.15);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
 }
 
+.upload strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+.upload span{
+  color:#666;
+  font-size:12px;
+}
+
+.preset-form{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+input[type="text"]{
+  background:#0b0b0b;
+  border:1px solid rgba(255,255,255,.15);
+  color:#fff;
+  padding:13px 15px;
+  outline:none;
+}
+
+input[type="text"]:focus{
+  border-color:#ff2020;
+}
+
+.hidden{
+  display:none;
+}
+
+/* ABOUT */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+}
+
+.about-text{
+  color:#aaa;
+  font-size:18px;
+  line-height:1.7;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.stat{
+  padding:25px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#090909;
+}
+
+.stat strong{
+  display:block;
+  color:#ff2020;
+  font-size:35px;
+  margin-bottom:5px;
+}
+
+.stat span{
+  color:#777;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* CONTACT */
+
+.contact-box{
+  border:1px solid rgba(255,255,255,.08);
+  padding:45px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(255,30,30,.12),transparent 35%),
+    #090909;
+}
+
+.contact-box h2{
+  font-size:clamp(45px,7vw,90px);
+  letter-spacing:-4px;
+  margin-bottom:20px;
+}
+
+.contact-box p{
+  color:#777;
+  margin-bottom:28px;
+}
+
+.contact-links{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* FOOTER */
+
+footer{
+  padding:35px 0;
+  border-top:1px solid rgba(255,255,255,.06);
+  color:#555;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  nav{
+    display:none;
+  }
+
+  .hero-title{
+    letter-spacing:-4px;
+  }
+
+  .cards,
+  .presets,
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-top{
+    display:block;
+  }
+
+  .note{
+    margin-top:15px;
+  }
+
+  .upload{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .preset-form{
+    justify-content:flex-start;
+  }
+
+  .contact-box{
+    padding:28px;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
@@ -540,492 +517,343 @@ flex-direction:column
 <body>
 
 <header>
-<div class="wrap nav">
+  <div class="wrap nav">
+    <a href="#" class="logo">EON<span>A</span>L</a>
 
-<a class="logo" href="#home">EONAL<span>.</span></a>
-
-<nav>
-<a href="#home">Home</a>
-<a href="#videos">Videos</a>
-<a href="#presets">Presets</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
-</nav>
-
-<a class="nav-social" href="https://t.me/eonal0" target="_blank">@eonal0</a>
-
-</div>
+    <nav>
+      <a href="#videos">Videos</a>
+      <a href="#presets">Presets</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
-<main>
 
-<section class="hero wrap" id="home">
-<div>
+<!-- HERO -->
 
-<div class="eyebrow">
-VIDEO EDITOR / KAZAKHSTAN
-</div>
+<section class="hero" id="home">
+  <div class="wrap hero-content">
 
-<h1>
-MAKE IT<br>
-<span>HIT.</span>
-</h1>
+    <div class="kicker">Video editor / After Effects</div>
 
-<p>
-Creative edits, motion and visual effects by Eonal.
-Built in After Effects with a focus on sharp visuals,
-rhythm and personality.
-</p>
+    <div class="hero-title">
+      MAKE IT HIT.
+    </div>
 
-<div class="actions">
-<a class="btn" href="#videos">View my edits</a>
-<a class="btn ghost" href="#contact">Contact me</a>
-</div>
+    <div class="hero-subtitle">
+      𝓨𝓸𝓾𝓻 𝓵𝓸𝓿𝓮 𝓶𝓪𝓴𝓮𝓼 𝓶𝓮 𝓼𝓽𝓻𝓸𝓷𝓰, 𝔂𝓸𝓾𝓻 𝓱𝓪𝓽𝓮 𝓶𝓪𝓴𝓮𝓼 𝓶𝓮 𝓾𝓷𝓼𝓽𝓸𝓹𝓹𝓪𝓫𝓵𝓮
+    </div>
 
-</div>
+    <div class="hero-buttons">
+      <a href="#videos" class="btn">View my work</a>
+      <a href="#presets" class="btn ghost">Presets</a>
+    </div>
+
+  </div>
 </section>
 
+
+<!-- VIDEOS -->
 
 <section id="videos">
+  <div class="wrap">
 
-<div class="wrap">
+    <div class="section-top">
+      <div>
+        <div class="kicker">01 / Latest videos</div>
+        <h2>Recent work</h2>
+      </div>
 
-<div class="section-top">
+      <div class="note">
+        My latest edits and video projects.
+      </div>
+    </div>
 
-<div>
-<div class="kicker">01 / Latest videos</div>
-<h2>Recent work</h2>
-</div>
+    <div class="cards" id="videoGrid"></div>
 
-<div class="note">
-My latest edits hosted on Supabase.
-</div>
+    <div class="upload">
+      <div>
+        <strong>Add a video from your computer</strong>
+        <span>The file will be shown locally in this browser.</span>
+      </div>
 
-</div>
+      <label class="btn" for="videoInput">
+        + Add video
+      </label>
 
-<div class="cards" id="videoGrid"></div>
+      <input
+        id="videoInput"
+        class="hidden"
+        type="file"
+        accept="video/mp4,video/webm,video/quicktime,video/x-m4v"
+        multiple
+      >
+    </div>
 
-<div class="upload">
-
-<div>
-<strong>Add a video from your computer</strong>
-<span>
-The files are shown locally in this page.
-</span>
-</div>
-
-<label class="btn" for="videoInput">
-+ Add video
-</label>
-
-<input
-id="videoInput"
-class="hidden"
-type="file"
-accept="video/mp4,video/webm,video/quicktime,video/x-m4v"
-multiple
->
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
+
+<!-- PRESETS -->
 
 <section id="presets">
+  <div class="wrap">
 
-<div class="wrap">
+    <div class="section-top">
+      <div>
+        <div class="kicker">02 / Presets</div>
+        <h2>My presets</h2>
+      </div>
 
-<div class="section-top">
+      <div class="note">
+        After Effects presets, packs and downloads.
+      </div>
+    </div>
 
-<div>
-<div class="kicker">02 / Presets</div>
-<h2>My presets</h2>
-</div>
+    <div class="presets" id="presetGrid"></div>
 
-<div class="note">
-After Effects presets and downloads.
-</div>
+    <div class="upload">
 
-</div>
+      <div>
+        <strong>Add a preset</strong>
+        <span>
+          Give it a name, choose the preset file and add a preview photo.
+        </span>
+      </div>
 
-<div class="presets" id="presetGrid"></div>
+      <div class="preset-form">
 
-<div class="upload">
+        <input
+          id="presetName"
+          type="text"
+          placeholder="Preset name"
+        >
 
-<div>
-<strong>Add a preset</strong>
+        <label class="btn" for="presetInput">
+          Choose preset
+        </label>
 
-<span>
-You can add more presets from your computer.
-</span>
+        <input
+          id="presetInput"
+          class="hidden"
+          type="file"
+        >
 
-</div>
+        <label class="btn ghost" for="presetImageInput">
+          Choose photo
+        </label>
 
-<div class="preset-form">
+        <input
+          id="presetImageInput"
+          class="hidden"
+          type="file"
+          accept="image/*"
+        >
 
-<input
-id="presetName"
-type="text"
-placeholder="Preset name"
->
+        <button
+          id="addPresetBtn"
+          class="btn"
+          type="button"
+        >
+          + Add preset
+        </button>
 
-<label class="btn" for="presetInput">
-Choose preset
-</label>
+      </div>
+    </div>
 
-<input
-id="presetInput"
-class="hidden"
-type="file"
->
-
-<label class="btn ghost" for="presetImageInput">
-Choose photo
-</label>
-
-<input
-id="presetImageInput"
-class="hidden"
-type="file"
-accept="image/*"
->
-
-<button
-id="addPresetBtn"
-class="btn"
-type="button"
->
-+ Add preset
-</button>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
+
+<!-- ABOUT -->
 
 <section id="about">
+  <div class="wrap">
 
-<div class="wrap">
+    <div class="section-top">
+      <div>
+        <div class="kicker">03 / About</div>
+        <h2>About EONAL</h2>
+      </div>
+    </div>
 
-<div class="section-top">
+    <div class="about-grid">
 
-<div>
-<div class="kicker">03 / About me</div>
-<h2>Who is Eonal?</h2>
-</div>
+      <div class="about-text">
+        I create edits with rhythm, atmosphere and impact.
+        My main tool is After Effects, where I work with motion,
+        effects, transitions, color and sound.
+        <br><br>
+        EONAL is my personal space for showcasing my work,
+        presets and future projects.
+      </div>
 
-</div>
+      <div class="stats">
 
-<div class="about">
+        <div class="stat">
+          <strong>AE</strong>
+          <span>After Effects</span>
+        </div>
 
-<div class="panel">
+        <div class="stat">
+          <strong>4K</strong>
+          <span>Editing</span>
+        </div>
 
-<p>
-I’m a young editor from Kazakhstan, I work in After Effects 24,
-I’m also 14 years old, and I’m cool.
-</p>
+        <div class="stat">
+          <strong>24/7</strong>
+          <span>Creating</span>
+        </div>
 
-<p>
-I make edits, motion graphics and visual effects,
-and this portfolio is where I keep my latest work and presets.
-</p>
+        <div class="stat">
+          <strong>∞</strong>
+          <span>Ideas</span>
+        </div>
 
-</div>
+      </div>
 
-<div class="facts">
-
-<div class="fact">
-<small>Location</small>
-<b>Kazakhstan 🇰🇿</b>
-</div>
-
-<div class="fact">
-<small>Software</small>
-<b>After Effects 24</b>
-</div>
-
-<div class="fact">
-<small>Age</small>
-<b>14 years old</b>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+    </div>
+  </div>
 </section>
 
+
+<!-- CONTACT -->
 
 <section id="contact">
+  <div class="wrap">
 
-<div class="wrap">
+    <div class="contact-box">
 
-<div class="section-top">
+      <div class="kicker">04 / Contact</div>
 
-<div>
-<div class="kicker">04 / Contact</div>
-<h2>Let's connect.</h2>
-</div>
+      <h2>LET'S WORK.</h2>
 
-</div>
+      <p>
+        Have an edit, project or collaboration in mind?
+        Get in touch.
+      </p>
 
-<div class="contact">
+      <div class="contact-links">
 
-<div class="contact-card">
+        <a
+          class="btn"
+          href="https://t.me/"
+          target="_blank"
+        >
+          Telegram
+        </a>
 
-<h3>Telegram</h3>
+        <a
+          class="btn ghost"
+          href="mailto:"
+        >
+          Email
+        </a>
 
-<p>
-For edits, collaborations, questions or just to say hi.
-</p>
+      </div>
 
-<a
-class="contact-link"
-href="https://t.me/eonal0"
-target="_blank"
->
-@eonal0 →
-</a>
+    </div>
 
-</div>
-
-<div class="contact-card">
-
-<h3>Socials</h3>
-
-<p>
-TikTok: <b>@eonal0</b><br>
-YouTube: <b>soon</b>
-</p>
-
-<a class="contact-link" href="#home">
-Back to top ↑
-</a>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
-</main>
+
+<!-- FOOTER -->
 
 <footer>
-EONAL — VIDEO EDITOR · 2026
+  <div class="wrap footer-inner">
+    <div>© 2026 EONAL</div>
+    <div>MAKE IT HIT.</div>
+  </div>
 </footer>
 
 
 <script>
 
 /* =========================
-   SUPABASE VIDEOS
+   SUPABASE MEDIA
 ========================= */
 
 const videos = [
 
-{
-name:"ClassMate Edit",
-url:"https://yjuaiuswujqatdxeafvl.supabase.co/storage/v1/object/public/eonal-media/ClassMateEdit1.mp4"
-}
+  {
+    name: "ClassMate Edit",
+    url: "https://yjuaiuswujqatdxeafvl.supabase.co/storage/v1/object/public/eonal-media/ClassMateEdit1.mp4"
+  }
 
 ];
 
-
-/* =========================
-   SUPABASE PRESETS
-========================= */
 
 const presets = [
 
-{
-name:"GE Quality CC",
-fileName:"GE Quality CC.ffx",
-url:"https://yjuaiuswujqatdxeafvl.supabase.co/storage/v1/object/public/eonal-media/GE%20Quality%20CC.ffx",
-imageUrl:""
-}
+  {
+    name: "GE Quality CC",
+    fileName: "GE Quality CC.ffx",
+    url: "https://yjuaiuswujqatdxeafvl.supabase.co/storage/v1/object/public/eonal-media/GE%20Quality%20CC.ffx",
+
+    /* СЮДА ПОТОМ МОЖНО ВСТАВИТЬ URL КАРТИНКИ */
+    imageUrl: ""
+  }
 
 ];
 
 
-const videoGrid =
-document.getElementById("videoGrid");
-
-const presetGrid =
-document.getElementById("presetGrid");
-
-
 /* =========================
-   RENDER VIDEOS
+   VIDEO RENDER
 ========================= */
+
+const videoGrid = document.getElementById("videoGrid");
 
 function renderVideos(){
 
-videoGrid.innerHTML="";
+  videoGrid.innerHTML = "";
 
-videos.forEach((v,i)=>{
+  videos.forEach((video,index)=>{
 
-const card=document.createElement("article");
+    const card = document.createElement("div");
+    card.className = "card";
 
-card.className="card";
+    card.innerHTML = `
+      <div class="video-wrap">
 
-card.innerHTML=`
+        <video
+          controls
+          preload="metadata"
+          src="${video.url}">
+        </video>
 
-<div class="media">
+        <button
+          class="video-fullscreen"
+          type="button">
+          Fullscreen
+        </button>
 
-<video
-controls
-playsinline
-preload="metadata"
-src="${v.url}">
-</video>
+      </div>
 
-<button
-class="fullscreen"
-type="button">
-⛶ FULL SCREEN
-</button>
+      <div class="card-info">
+        <h3>${video.name}</h3>
+        <p>Video edit / EONAL</p>
+      </div>
+    `;
 
-</div>
+    const fullBtn =
+      card.querySelector(".video-fullscreen");
 
-<div class="meta">
+    const videoElement =
+      card.querySelector("video");
 
-<h3>
-${escapeHtml(v.name)}
-</h3>
+    fullBtn.addEventListener("click",()=>{
 
-<p>
-Supabase · ${i+1}
-</p>
+      if(videoElement.requestFullscreen){
+        videoElement.requestFullscreen();
+      }
 
-</div>
+    });
 
-`;
+    videoGrid.appendChild(card);
 
-const fullscreenButton =
-card.querySelector(".fullscreen");
-
-fullscreenButton.onclick=()=>{
-
-const video=card.querySelector("video");
-
-if(video.requestFullscreen){
-
-video.requestFullscreen();
-
-}else if(video.webkitEnterFullscreen){
-
-video.webkitEnterFullscreen();
-
-}
-
-};
-
-videoGrid.appendChild(card);
-
-});
-
-}
-
-
-/* =========================
-   RENDER PRESETS
-========================= */
-
-function renderPresets(){
-
-presetGrid.innerHTML="";
-
-presets.forEach((p)=>{
-
-const card=document.createElement("article");
-
-card.className="preset";
-
-card.innerHTML=`
-
-<div class="preset-preview">
-
-${
-p.imageUrl
-?
-'<img src="'+p.imageUrl+'" alt="">'
-:
-'AE'
-}
-
-</div>
-
-<div class="preset-body">
-
-<h3>
-${escapeHtml(p.name)}
-</h3>
-
-<p>
-After Effects preset · ${p.fileName}
-</p>
-
-<button class="download">
-DOWNLOAD
-</button>
-
-</div>
-
-`;
-
-const downloadButton =
-card.querySelector(".download");
-
-downloadButton.onclick=()=>{
-
-const link=document.createElement("a");
-
-link.href=p.url;
-
-link.download=p.fileName;
-
-link.target="_blank";
-
-document.body.appendChild(link);
-
-link.click();
-
-link.remove();
-
-};
-
-presetGrid.appendChild(card);
-
-});
-
-}
-
-
-/* =========================
-   SECURITY
-========================= */
-
-function escapeHtml(s){
-
-return s.replace(/[&<>'"]/g,c=>({
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-"'":"&#39;",
-'"':"&quot;"
-
-}[c]));
+  });
 
 }
 
@@ -1035,93 +863,173 @@ return s.replace(/[&<>'"]/g,c=>({
 ========================= */
 
 document
-.getElementById("videoInput")
-.addEventListener("change",e=>{
+  .getElementById("videoInput")
+  .addEventListener("change",(event)=>{
 
-[...e.target.files].forEach(file=>{
+    [...event.target.files].forEach(file=>{
 
-videos.unshift({
+      const url = URL.createObjectURL(file);
 
-name:file.name,
+      videos.push({
+        name:file.name,
+        url:url
+      });
 
-url:URL.createObjectURL(file)
+    });
 
-});
+    renderVideos();
 
-});
+  });
 
-renderVideos();
 
-e.target.value="";
+/* =========================
+   PRESET RENDER
+========================= */
 
-});
+const presetGrid =
+  document.getElementById("presetGrid");
+
+function renderPresets(){
+
+  presetGrid.innerHTML = "";
+
+  presets.forEach(preset=>{
+
+    const card =
+      document.createElement("div");
+
+    card.className = "preset-card";
+
+    const preview = preset.imageUrl
+      ? `
+        <div class="preset-preview">
+          <img
+            src="${preset.imageUrl}"
+            alt="${preset.name}">
+        </div>
+      `
+      : `
+        <div class="preset-preview">
+          <div class="preset-placeholder">
+            AE
+          </div>
+        </div>
+      `;
+
+    card.innerHTML = `
+
+      ${preview}
+
+      <div class="preset-info">
+
+        <h3>${preset.name}</h3>
+
+        <a
+          class="btn"
+          href="${preset.url}"
+          download="${preset.fileName}">
+          Download .ffx
+        </a>
+
+      </div>
+
+    `;
+
+    presetGrid.appendChild(card);
+
+  });
+
+}
 
 
 /* =========================
    LOCAL PRESET UPLOAD
 ========================= */
 
-const presetName =
-document.getElementById("presetName");
-
-const presetInput =
-document.getElementById("presetInput");
-
-const presetImageInput =
-document.getElementById("presetImageInput");
+let selectedPresetFile = null;
+let selectedPresetImage = null;
 
 
 document
-.getElementById("addPresetBtn")
-.addEventListener("click",()=>{
+  .getElementById("presetInput")
+  .addEventListener("change",(event)=>{
 
-const file =
-presetInput.files[0];
+    selectedPresetFile =
+      event.target.files[0] || null;
 
-const image =
-presetImageInput.files[0];
-
-
-if(!file){
-
-alert("Choose a preset file first.");
-
-return;
-
-}
+  });
 
 
-const name =
-presetName.value.trim()
-||
-file.name.replace(/\.[^/.]+$/,"");
+document
+  .getElementById("presetImageInput")
+  .addEventListener("change",(event)=>{
+
+    selectedPresetImage =
+      event.target.files[0] || null;
+
+  });
 
 
-presets.unshift({
+document
+  .getElementById("addPresetBtn")
+  .addEventListener("click",()=>{
 
-name:name,
+    const name =
+      document
+        .getElementById("presetName")
+        .value
+        .trim();
 
-fileName:file.name,
+    if(!name){
+      alert("Enter preset name.");
+      return;
+    }
 
-url:URL.createObjectURL(file),
+    if(!selectedPresetFile){
+      alert("Choose a preset file.");
+      return;
+    }
 
-imageUrl:image
-?
-URL.createObjectURL(image)
-:
-""
+    const presetUrl =
+      URL.createObjectURL(selectedPresetFile);
 
-});
+    let imageUrl = "";
 
+    if(selectedPresetImage){
+      imageUrl =
+        URL.createObjectURL(selectedPresetImage);
+    }
 
-renderPresets();
+    presets.push({
 
+      name:name,
 
-presetName.value="";
-presetInput.value="";
-presetImageInput.value="";
+      fileName:selectedPresetFile.name,
 
-});
+      url:presetUrl,
+
+      imageUrl:imageUrl
+
+    });
+
+    document
+      .getElementById("presetName")
+      .value = "";
+
+    selectedPresetFile = null;
+    selectedPresetImage = null;
+
+    document
+      .getElementById("presetInput")
+      .value = "";
+
+    document
+      .getElementById("presetImageInput")
+      .value = "";
+
+    renderPresets();
+
+  });
 
 
 /* =========================
